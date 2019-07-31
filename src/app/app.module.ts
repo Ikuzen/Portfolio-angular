@@ -8,10 +8,12 @@ import {LayoutModule} from '@angular/cdk/layout'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TitleScreenComponent } from './title-screen/title-screen.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TitleScreenComponent
   ],
   imports: [
     BrowserModule,
