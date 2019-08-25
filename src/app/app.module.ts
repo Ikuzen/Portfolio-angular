@@ -1,37 +1,30 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import {MatGridListModule,MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatDialogModule, MatInputModule } from '@angular/material';
-import {LayoutModule} from '@angular/cdk/layout'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TitleScreenComponent } from './title-screen/title-screen.component';
+import { EngineComponent } from './engine/engine.component';
+import { UiInfobarBottomComponent } from './ui/ui-infobar-bottom/ui-infobar-bottom.component';
+import { UiInfobarTopComponent } from './ui/ui-infobar-top/ui-infobar-top.component';
+import { UiSidebarLeftComponent } from './ui/ui-sidebar-left/ui-sidebar-left.component';
+import { UiSidebarRightComponent } from './ui/ui-sidebar-right/ui-sidebar-right.component';
+import { UiComponent } from './ui/ui.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TitleScreenComponent
+    EngineComponent,
+    UiComponent,
+    UiInfobarBottomComponent,
+    UiInfobarTopComponent,
+    UiSidebarLeftComponent,
+    UiSidebarRightComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    LayoutModule,
-    MatGridListModule,
-    AppRoutingModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatListModule,
-    MatIconModule,
-    MatDialogModule,
-    MatInputModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
+    BrowserModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
