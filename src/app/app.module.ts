@@ -8,11 +8,12 @@ import { UiSidebarLeftComponent } from './ui/ui-sidebar-left/ui-sidebar-left.com
 import { UiSidebarRightComponent } from './ui/ui-sidebar-right/ui-sidebar-right.component';
 import { UiComponent } from './ui/ui.component';
 //material design modules
-import {MatGridListModule,MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatDialogModule, MatInputModule } from '@angular/material';
+import {MatSelectModule,MatFormFieldModule,MatSliderModule,MatGridListModule,MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatDialogModule, MatInputModule } from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
-import { TestComponent } from './ui/test/test.component';
+
+
 //
 
 @NgModule({
@@ -24,7 +25,6 @@ import { TestComponent } from './ui/test/test.component';
     UiInfobarTopComponent,
     UiSidebarLeftComponent,
     UiSidebarRightComponent,
-    TestComponent,
     
   ],
   imports: [
@@ -36,9 +36,12 @@ import { TestComponent } from './ui/test/test.component';
     MatIconModule,
     MatDialogModule,
     MatInputModule,
+    MatSliderModule,
+    MatSelectModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
     FormsModule,
-    BrowserModule
+    BrowserModule,
   ],
   providers: [
   ],

@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import * as CONTROL from 'node_modules/three/examples/jsm/controls/OrbitControls'
-import { Injectable, ElementRef, OnDestroy, NgZone } from '@angular/core';
+import { GeometryUtils } from 'node_modules/three/examples/jsm/utils/GeometryUtils'
+
+import { Injectable, ElementRef, OnDestroy, NgZone, Input } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +11,15 @@ export class EngineService implements OnDestroy {
   private canvas: HTMLCanvasElement;
   private renderer: THREE.WebGLRenderer;
   private camera: THREE.PerspectiveCamera;
+  private cameraTarget: THREE.Vector3;
   private scene: THREE.Scene;
-  private controls : CONTROL.OrbitControls;
-  public rotateSpeed : number; 
+  private controls: CONTROL.OrbitControls;
+  private dirLight: THREE.DirectionalLight;
+  private pointLight: THREE.PointLight;
+
+
+  // N64 cube//
+  public rotateSpeed: number;
   private nintendoCube1: THREE.Mesh;
   private nintendoCube2: THREE.Mesh;
   private nintendoCube3: THREE.Mesh;
@@ -23,7 +31,7 @@ export class EngineService implements OnDestroy {
 
   private frameId: number = null;
 
-  public constructor(private ngZone: NgZone) { 
+  public constructor(private ngZone: NgZone) {
     this.rotateSpeed = 0.008;
   }
 
@@ -46,12 +54,44 @@ export class EngineService implements OnDestroy {
 
     // create the scene
     this.scene = new THREE.Scene();
-
+    this.scene.background = new THREE.Color(0x000000);
+    this.scene.fog = new THREE.Fog(0x000000, 250, 1400)
+    // camera 
     this.camera = new THREE.PerspectiveCamera(
-      75, window.innerWidth / window.innerHeight, 0.1, 400
+      30, window.innerWidth / window.innerHeight, 1, 1500
     );
-    this.camera.position.z = 150;
+    this.camera.position.set(0, 50, 400);
+    this.cameraTarget = new THREE.Vector3(0, 150, 0);
+
+    // this.camera.position.z = 200;
     this.scene.rotation.x = .45;
+    // lights
+    this.dirLight = new THREE.DirectionalLight(0xffffff, 0.125);
+    this.dirLight.position.set(0, 0, 1).normalize();
+    this.scene.add(this.dirLight);
+
+    this.pointLight = new THREE.PointLight(0xffffff, 1.5, 100);
+    this.pointLight.position.set(50, 50, 50);
+    this.scene.add(this.pointLight)
+    this.pointLight.color.setHex(0x53f40e);
+      //
+
+      var ambient = new THREE.AmbientLight( 0xffffff, 0.1 );
+				this.scene.add( ambient );
+				var spotLight = new THREE.SpotLight( 0xffffff, 1 );
+				spotLight.position.set( 15, 40, 0 );
+				spotLight.angle = Math.PI / 4;
+				spotLight.penumbra = 0.05;
+				spotLight.decay = 2;
+				spotLight.distance = 200;
+				spotLight.castShadow = true;
+				spotLight.shadow.mapSize.width = 1024;
+				spotLight.shadow.mapSize.height = 1024;
+				spotLight.shadow.camera.near = 10;
+				spotLight.shadow.camera.far = 200;
+				this.scene.add( spotLight );
+
+
 
     // ------------------------------------------------------
     // Mesh
@@ -115,6 +155,19 @@ export class EngineService implements OnDestroy {
     // ---------
     const cubeMaterial = new THREE.MeshBasicMaterial({ vertexColors: THREE.FaceColors });
 
+    // ground mesh
+
+    var material = new THREE.MeshPhongMaterial({ color: 0x808080, dithering: true });
+    var geometry = new THREE.PlaneBufferGeometry(2000, 2000);
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(0, -40, 0);
+    mesh.rotation.x = - Math.PI * 0.5;
+    mesh.receiveShadow = true;
+    this.scene.add(mesh);
+
+
+
+
     // All mesh
     // ---------
     this.nintendoCube1 = new THREE.Mesh(cubeGeometryColor1, cubeMaterial);
@@ -134,19 +187,28 @@ export class EngineService implements OnDestroy {
     this.nintendoCube2.position.set(30, 0, 30);
     this.nintendoCube3.position.set(-30, 0, -30);
     this.nintendoCube4.position.set(30, 0, -30);
-    
+
     this.nintendoCube5.position.set(0, 0, 30);
-    
+
     this.nintendoCube6.position.set(0, 0, -30);
     this.nintendoCube6.rotation.z = 2.41;
     this.nintendoCube5.rotation.z = 0.73;
     this.nintendoCube7.rotation.x = 2.41;
     this.nintendoCube8.rotation.x = 0.73;
-    
-    
+
+
     this.nintendoCube7.position.set(-30, 0, 0);
-    
+
     this.nintendoCube8.position.set(30, 0, 0);
+
+    this.nintendoCube1.receiveShadow = true;
+    this.nintendoCube2.receiveShadow = true;
+    this.nintendoCube3.receiveShadow = true;
+    this.nintendoCube4.receiveShadow = true;
+    this.nintendoCube5.receiveShadow = true;
+    this.nintendoCube6.receiveShadow = true;
+    this.nintendoCube7.receiveShadow = true;
+    this.nintendoCube8.receiveShadow = true;
 
     this.scene.add(
       this.nintendoCube1,
@@ -158,13 +220,13 @@ export class EngineService implements OnDestroy {
       this.nintendoCube7,
       this.nintendoCube8
     );
-    
+
     // controls //
-    
-    this.controls = new CONTROL.OrbitControls( this.camera, this.renderer.domElement );
-				this.controls.minDistance = 20;
-				this.controls.maxDistance = 300;
-        this.controls.maxPolarAngle = Infinity;
+
+    this.controls = new CONTROL.OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.minDistance = 100;
+    this.controls.maxDistance = 600;
+    this.controls.maxPolarAngle = Infinity;
 
 
   }
@@ -202,5 +264,7 @@ export class EngineService implements OnDestroy {
 
     this.renderer.setSize(width, height);
   }
-  
+  resetPos() {
+    this.camera.position.set(0, 50, 400);
+  }
 }

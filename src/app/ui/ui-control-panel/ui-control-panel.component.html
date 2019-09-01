@@ -1,12 +1,32 @@
 <h1>
   control panel
 </h1>
-<div class="speed" >
+<div class="speed">
   <p>Rotation :</p>
   <button mat-fab style="color:black; background-color: crimson" (click)="changeRotateSpd(0)"> stop</button>
   <button mat-fab style="color:black; background-color: yellow" (click)="changeRotateSpd(0.008)"> slow</button>
   <button mat-fab style="color:black; background-color: blue" (click)="changeRotateSpd(0.015)"> normal</button>
   <button mat-fab style="color:black; background-color: green" (click)="changeRotateSpd(0.04)"> fast</button>
   <button mat-fab style="color:whitesmoke; background-color: black" (click)="changeRotateSpd(1)"> Ultra</button>
+
+</div>
+<div class="position">
+  <p>Position :</p>
+  <button mat-fab style="color: whitesmoke; background-color:darkkhaki" (click)="engine.resetPos()">Reset</button>
+</div>
+
+<div class="light">
+  <p>Light :</p>
+  <label for="">intensity:</label>
+  <mat-slider></mat-slider>
+
+  <mat-form-field>
+    <mat-label>light color</mat-label>
+    <mat-select [ngModel]="panelColor" panelClass="example-panel-{{panelColor.value}}">
+      <mat-option value="red">Red</mat-option>
+      <mat-option value="green">Green</mat-option>
+      <mat-option value="blue">Blue</mat-option>
+    </mat-select>
+  </mat-form-field>
 
 </div>
