@@ -11,7 +11,7 @@ export class EngineService implements OnDestroy {
   private camera: THREE.PerspectiveCamera;
   private scene: THREE.Scene;
   private controls : CONTROL.OrbitControls;
-  private light: THREE.AmbientLight;
+  public rotateSpeed : number; 
   private nintendoCube1: THREE.Mesh;
   private nintendoCube2: THREE.Mesh;
   private nintendoCube3: THREE.Mesh;
@@ -23,7 +23,9 @@ export class EngineService implements OnDestroy {
 
   private frameId: number = null;
 
-  public constructor(private ngZone: NgZone) { }
+  public constructor(private ngZone: NgZone) { 
+    this.rotateSpeed = 0.008;
+  }
 
   public ngOnDestroy() {
     if (this.frameId != null) {
@@ -183,7 +185,7 @@ export class EngineService implements OnDestroy {
 
   render() {
     this.frameId = requestAnimationFrame(() => {
-      this.scene.rotation.y += 0.008;
+      this.scene.rotation.y += this.rotateSpeed;
       this.renderer.render(this.scene, this.camera);
       this.render();
 
