@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import * as CONTROL from 'node_modules/three/examples/jsm/controls/OrbitControls'
 import { Injectable, ElementRef, OnDestroy, NgZone } from '@angular/core';
 
 @Injectable({
@@ -9,8 +10,8 @@ export class EngineService implements OnDestroy {
   private renderer: THREE.WebGLRenderer;
   private camera: THREE.PerspectiveCamera;
   private scene: THREE.Scene;
+  private controls : CONTROL.OrbitControls;
   private light: THREE.AmbientLight;
-  private controls: THREE.CubeCamera;
   private nintendoCube1: THREE.Mesh;
   private nintendoCube2: THREE.Mesh;
   private nintendoCube3: THREE.Mesh;
@@ -19,7 +20,6 @@ export class EngineService implements OnDestroy {
   private nintendoCube6: THREE.Mesh;
   private nintendoCube7: THREE.Mesh;
   private nintendoCube8: THREE.Mesh;
-  // private controls:THREE.OrbitControls;
 
   private frameId: number = null;
 
@@ -156,9 +156,14 @@ export class EngineService implements OnDestroy {
       this.nintendoCube7,
       this.nintendoCube8
     );
-    //
+    
     // controls //
-    //
+    
+    this.controls = new CONTROL.OrbitControls( this.camera, this.renderer.domElement );
+				this.controls.minDistance = 20;
+				this.controls.maxDistance = 300;
+        this.controls.maxPolarAngle = Infinity;
+
 
   }
 
@@ -181,7 +186,6 @@ export class EngineService implements OnDestroy {
       this.scene.rotation.y += 0.008;
       this.renderer.render(this.scene, this.camera);
       this.render();
-      // console.log(this.nintendoCube1.position)
 
     });
 
