@@ -2,7 +2,9 @@
  * node_modules imports
  *****************************************************/
  @import 'node_modules/bootstrap/scss/bootstrap.scss';
-
+ // material
+ @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+//
  /*****************************************************
   * project imports
   *****************************************************/

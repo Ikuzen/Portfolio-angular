@@ -7,7 +7,7 @@ import { EngineService } from './engine.service';
 })
 export class EngineComponent implements OnInit {
 
-  @ViewChild('rendererCanvas')
+  @ViewChild('rendererCanvas',{ static: false, })
   public rendererCanvas: ElementRef<HTMLCanvasElement>;
 
   constructor(private engServ: EngineService) { }

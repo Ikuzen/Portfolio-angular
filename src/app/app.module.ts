@@ -23,6 +23,9 @@ import {FormsModule} from '@angular/forms';
     UiInfobarTopComponent,
     UiSidebarLeftComponent,
     UiSidebarRightComponent,
+    
+  ],
+  imports: [
     LayoutModule,
     MatGridListModule,
     MatToolbarModule,
@@ -33,9 +36,6 @@ import {FormsModule} from '@angular/forms';
     MatInputModule,
     BrowserAnimationsModule,
     FormsModule,
-
-  ],
-  imports: [
     BrowserModule
   ],
   providers: [
