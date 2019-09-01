@@ -13,7 +13,7 @@ import {FormControl} from '@angular/forms';
 
 })
 export class UiControlPanelComponent implements OnInit {
-  panelColor = new FormControl('red');
+  panelColor = 'white';
 
   constructor(public engine:EngineService) {
    }
@@ -22,5 +22,13 @@ export class UiControlPanelComponent implements OnInit {
   }
   changeRotateSpd(speed:number){
     this.engine.rotateSpeed = speed;
+  }
+  changeSpotLightIntensity(value:number){
+    this.engine.pointLight.intensity = value;
+    console.log(this.engine.pointLight.intensity)
+  }
+  changeSpotLightColor(hex:number){
+    this.engine.pointLight.color.setHex(hex);
+    console.log(this.engine.pointLight.color)
   }
 }

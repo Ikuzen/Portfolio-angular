@@ -14,8 +14,8 @@ export class EngineService implements OnDestroy {
   private cameraTarget: THREE.Vector3;
   private scene: THREE.Scene;
   private controls: CONTROL.OrbitControls;
-  private dirLight: THREE.DirectionalLight;
-  private pointLight: THREE.PointLight;
+  public dirLight: THREE.DirectionalLight;
+  public pointLight: THREE.PointLight;
 
 
   // N64 cube//
@@ -71,9 +71,9 @@ export class EngineService implements OnDestroy {
     this.scene.add(this.dirLight);
 
     this.pointLight = new THREE.PointLight(0xffffff, 1.5, 100);
-    this.pointLight.position.set(50, 50, 50);
+    this.pointLight.position.set(0, 0, 0);
+    this.pointLight.color.setHex(0xFF0000);
     this.scene.add(this.pointLight)
-    this.pointLight.color.setHex(0x53f40e);
       //
 
       var ambient = new THREE.AmbientLight( 0xffffff, 0.1 );
@@ -88,7 +88,8 @@ export class EngineService implements OnDestroy {
 				spotLight.shadow.mapSize.width = 1024;
 				spotLight.shadow.mapSize.height = 1024;
 				spotLight.shadow.camera.near = 10;
-				spotLight.shadow.camera.far = 200;
+        spotLight.shadow.camera.far = 200;
+        spotLight.color.set('0xff00ff')  
 				this.scene.add( spotLight );
 
 
