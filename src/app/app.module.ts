@@ -12,6 +12,7 @@ import {MatGridListModule,MatToolbarModule, MatButtonModule, MatIconModule, MatL
 import {LayoutModule} from '@angular/cdk/layout'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
+import { TestComponent } from './ui/test/test.component';
 //
 
 @NgModule({
@@ -23,6 +24,7 @@ import {FormsModule} from '@angular/forms';
     UiInfobarTopComponent,
     UiSidebarLeftComponent,
     UiSidebarRightComponent,
+    TestComponent,
     
   ],
   imports: [

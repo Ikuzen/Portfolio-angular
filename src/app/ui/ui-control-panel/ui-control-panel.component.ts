@@ -4,7 +4,7 @@ import { EngineService } from 'src/app/engine/engine.service';
 @Component({
   selector: 'app-ui-control-panel',
   templateUrl: './ui-control-panel.component.html',
-  styleUrls: []
+  styleUrls: ['ui-control-panel.component.scss']
 })
 export class UiControlPanelComponent implements OnInit {
 
