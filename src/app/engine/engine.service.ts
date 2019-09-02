@@ -16,6 +16,7 @@ export class EngineService implements OnDestroy {
   private controls: CONTROL.OrbitControls;
   public dirLight: THREE.DirectionalLight;
   public pointLight: THREE.PointLight;
+  public ambientLight: THREE.AmbientLight;
 
 
   // N64 cube//
@@ -66,7 +67,7 @@ export class EngineService implements OnDestroy {
     // this.camera.position.z = 200;
     this.scene.rotation.x = .45;
     // lights
-    this.dirLight = new THREE.DirectionalLight(0xffffff, 0.125);
+    this.dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
     this.dirLight.position.set(0, 0, 1).normalize();
     this.scene.add(this.dirLight);
 
@@ -74,23 +75,23 @@ export class EngineService implements OnDestroy {
     this.pointLight.position.set(0, 0, 0);
     this.pointLight.color.setHex(0xFF0000);
     this.scene.add(this.pointLight)
-      //
+    
 
-      var ambient = new THREE.AmbientLight( 0xffffff, 0.1 );
-				this.scene.add( ambient );
-				var spotLight = new THREE.SpotLight( 0xffffff, 1 );
-				spotLight.position.set( 15, 40, 0 );
-				spotLight.angle = Math.PI / 4;
-				spotLight.penumbra = 0.05;
-				spotLight.decay = 2;
-				spotLight.distance = 200;
-				spotLight.castShadow = true;
-				spotLight.shadow.mapSize.width = 1024;
-				spotLight.shadow.mapSize.height = 1024;
-				spotLight.shadow.camera.near = 10;
-        spotLight.shadow.camera.far = 200;
-        spotLight.color.set('0xff00ff')  
-				this.scene.add( spotLight );
+    var ambient = new THREE.AmbientLight(0xffffff, 0.2);
+    this.scene.add(ambient);
+    var spotLight = new THREE.SpotLight(0xffffff, 1);
+    spotLight.position.set(15, 40, 0);
+    spotLight.angle = Math.PI / 4;
+    spotLight.penumbra = 0.05;
+    spotLight.decay = 2;
+    spotLight.distance = 200;
+    spotLight.castShadow = true;
+    spotLight.shadow.mapSize.width = 1024;
+    spotLight.shadow.mapSize.height = 1024;
+    spotLight.shadow.camera.near = 10;
+    spotLight.shadow.camera.far = 200;
+    spotLight.color.set('0xff00ff')
+    this.scene.add(spotLight);
 
 
 
@@ -101,7 +102,7 @@ export class EngineService implements OnDestroy {
     const red = 0xfe2015,
       blue = 0x011da9,
       yellow = 0xffc001,
-      green = 0x069330,
+      green = 0x309330,
       cubeWidth = 20,
       cubeHeight = 75,
       cubeDepth = 20;
@@ -154,7 +155,9 @@ export class EngineService implements OnDestroy {
     cubeGeometryColor3.faces[11].color.setHex(green);
     // Default material
     // ---------
-    const cubeMaterial = new THREE.MeshBasicMaterial({ vertexColors: THREE.FaceColors });
+    const cubeMaterial = new THREE.MeshLambertMaterial({ vertexColors: THREE.FaceColors });
+    cubeMaterial.emissive = new THREE.Color(255,255,255);
+    cubeMaterial.emissiveIntensity = 0.0005;
 
     // ground mesh
 

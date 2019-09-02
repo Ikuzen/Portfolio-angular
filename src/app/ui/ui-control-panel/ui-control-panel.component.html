@@ -16,7 +16,7 @@
 </div>
 
 <div class="light">
-  <p>Light :</p>
+  <p>SpotLight :</p>
   <label for="">intensity:</label>
   <mat-slider min="0" max="5" step="0.1" value="1.5" (change)="changeSpotLightIntensity($event.value)"></mat-slider>
 
@@ -30,5 +30,21 @@
       <mat-option value="blue"(click)="changeSpotLightColor('0x0000FF')">Blue</mat-option>
     </mat-select>
   </mat-form-field>
+</div>
 
+<div class="light">
+  <p>Directionnal Light :</p>
+  <label for="">intensity:</label>
+  <mat-slider min="0" max="5" step="0.1" value="1.5" (change)="changeDirLightIntensity($event.value)"></mat-slider>
+
+  <mat-form-field>
+    <mat-label>light color</mat-label>
+    <mat-select [(ngModel)]="panelColor" panelClass="example-panel-{{panelColor}}">
+      <mat-option value="white" (click)="changeDirLightColor('0xFFFFFF')">White</mat-option>
+      <mat-option value="yellow" (click)="changeDirLightColor('0xFFFF00')">Yellow</mat-option>
+      <mat-option value="red" (click)="changeDirLightColor('0xFF0000')">Red</mat-option>
+      <mat-option value="green"(click)="changeDirLightColor('0x00FF00')">Green</mat-option>
+      <mat-option value="blue"(click)="changeDirLightColor('0x0000FF')">Blue</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
