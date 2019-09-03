@@ -28,7 +28,7 @@ export class UiControlPanelComponent implements OnInit {
     this.engine.pointLight.intensity = value;
     console.log(this.engine.pointLight.intensity)
   }
-  changeSpotLightColor(hex:number){
+  changeSpotLightColor(hex:any){
     this.engine.pointLight.color.setHex(hex);
     console.log(this.engine.pointLight.color)
   }
@@ -36,7 +36,7 @@ export class UiControlPanelComponent implements OnInit {
     this.engine.dirLight.intensity = value;
     console.log(this.engine.dirLight.intensity)
   }
-  changeDirLightColor(hex:number){
+  changeDirLightColor(hex:any){
     this.engine.dirLight.color.setHex(hex);
     console.log(this.engine.dirLight.color)
   }

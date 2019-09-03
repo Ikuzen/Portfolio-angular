@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as CONTROL from 'node_modules/three/examples/jsm/controls/OrbitControls'
-
+import {UiComponent} from './ui/ui.component'
 import { Injectable, ElementRef, OnDestroy, NgZone, Input } from '@angular/core';
 
 @Injectable({
