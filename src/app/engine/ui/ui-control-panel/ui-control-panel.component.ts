@@ -14,6 +14,7 @@ import {FormControl} from '@angular/forms';
 })
 export class UiControlPanelComponent implements OnInit {
   panelColor = 'white';
+  
 
   constructor(public engine:EngineService) {
    }

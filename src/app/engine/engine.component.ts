@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { EngineService } from './engine.service';
+import {UiComponent} from './ui/ui.component'
 
 @Component({
   selector: 'app-engine',

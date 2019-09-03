@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import * as CONTROL from 'node_modules/three/examples/jsm/controls/OrbitControls'
-import { GeometryUtils } from 'node_modules/three/examples/jsm/utils/GeometryUtils'
 
 import { Injectable, ElementRef, OnDestroy, NgZone, Input } from '@angular/core';
 
