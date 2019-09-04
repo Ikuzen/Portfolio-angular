@@ -16,7 +16,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
 import { IndexComponent } from './index/index.component';
-
 //
 
 @NgModule({
@@ -49,6 +48,7 @@ import { IndexComponent } from './index/index.component';
     AppRoutingModule,
   ],
   providers: [
+    ViewportScroller
   ],
   bootstrap: [
     AppComponent
