@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import{Router} from '@angular/router'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: []
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Portfolio';
+  constructor(private router: Router){
+  }
+  goPlaces() {
+    this.router.navigate(['/', 'red-pill']).then(nav => {
+      console.log(nav); // true if navigation is successful
+    }, err => {
+      console.log(err) // when there's an error
+    });
+  }
 }
